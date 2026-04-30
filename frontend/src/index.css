@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Theme Tokens — Default (Light) */
+  --primary: #4f46e5;      /* Indigo-600 */
+  --primary-hover: #4338ca; /* Indigo-700 */
+  --primary-glow: rgba(79, 70, 229, 0.2);
+  
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #f1f5f9;
+  
+  --text-main: #0f172a;
+  --text-dim: #64748b;
+  --border-dim: rgba(0, 0, 0, 0.08);
+  
+  --aura-cyan: rgba(79, 70, 229, 0.1);
+}
+
+.dark {
+  /* Theme Tokens — Dark Override */
+  --primary: #6366f1;      /* Indigo-500 */
+  --primary-hover: #818cf8; /* Indigo-400 */
+  --bg-page: #020617;
+  --bg-surface: #0f172a;
+  --bg-card: #1e293b;
+  
+  --text-main: #f1f5f9;
+  --text-dim: #94a3b8;
+  --border-dim: rgba(255, 255, 255, 0.05);
+  
+  --aura-cyan: rgba(79, 70, 229, 0.05);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    @apply antialiased transition-colors duration-300;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    @apply backdrop-blur-xl shadow-2xl rounded-xl;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    @apply px-6 py-2.5 text-white font-black uppercase text-[10px] tracking-widest rounded-xl transition-all shadow-lg active:scale-95;
+    box-shadow: 0 10px 15px -3px var(--primary-glow);
+  }
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .input-field {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    @apply w-full rounded-xl px-4 py-3 text-sm outline-none transition-all placeholder:text-slate-500;
+    color: var(--text-main);
+  }
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-glow);
+  }
+}
+
+/* Scrollbar Overrides */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { 
+  background: var(--border-dim); 
+  border-radius: 10px; 
+}
+
+.privacy-mode .sensitive-data { 
+    filter: blur(10px); 
+    user-select: none; 
+}
+
+.animate-enter {
+  animation: enter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}

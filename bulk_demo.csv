@@ -1,0 +1,11 @@
+applicant_name,age,workclass,education,occupation,hours_per_week
+John Doe,45,Private,Bachelors,Exec-managerial,50
+Jane Smith,32,State-gov,Masters,Prof-specialty,40
+Michael Brown,22,Private,HS-grad,Other-service,35
+Emily Davis,58,Self-emp-not-inc,Some-college,Sales,45
+Robert Wilson,37,Local-gov,Bachelors,Tech-support,40
+Sarah Johnson,28,Private,Masters,Prof-specialty,45
+David Miller,52,Private,Bachelors,Sales,60
+Linda Thompson,41,Private,Assoc-voc,Craft-repair,40
+James Taylor,33,Private,Bachelors,Exec-managerial,45
+Jessica Anderson,25,Private,Some-college,Adm-clerical,40

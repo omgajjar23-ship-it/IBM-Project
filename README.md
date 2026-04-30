@@ -39,8 +39,8 @@ Traditional financial auditing and loan processing are often bogged down by manu
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/omgajjar23-ship-it/income-insight.git
-cd income-insight
+git clone https://github.com/ganpat-university/ibm-project-2026-g08-adult-income-level-prediction.git
+cd ibm-project-2026-g08-adult-income-level-prediction
 ```
 
 ### 2. Setup Backend

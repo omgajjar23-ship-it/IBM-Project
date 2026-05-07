@@ -23,8 +23,9 @@ services:
         sync: false # Set this in Render dashboard if using external DB
 
   # 2. Frontend Service (React/Vite)
-  - type: static_site
+  - type: web
     name: income-insight-frontend
+    env: static
     buildCommand: |
       cd frontend
       npm install

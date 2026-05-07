@@ -190,3 +190,7 @@ template.zip
 bulk_demo.csv
 bulk_demo_100.csv
 bulk_demo_400.csv
+scratch/
+~$*.pptx
+*.jpg
+*.png

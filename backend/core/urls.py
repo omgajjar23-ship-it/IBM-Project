@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     RegisterView, PredictionView, CustomTokenObtainPairView, LogoutView,
     AnalyticsView, ExportView, BatchSubmitView, BatchStatusView, BatchResultView,
-    AdminUserView, AdminUserToggleView, AdminLogView, AdminNukeView
+    AdminUserView, AdminUserToggleView, AdminLogView, AdminNukeView,
+    AdminPredictionView, AdminUserDeleteView
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -25,7 +26,10 @@ urlpatterns = [
     path('batch/results/<str:job_id>', BatchResultView.as_view(), name='batch_results'),
     
     path('admin/users', AdminUserView.as_view(), name='admin_users'),
+    path('admin/db/users/<int:pk>', AdminUserDeleteView.as_view(), name='admin_user_delete'),
     path('admin/users/<int:user_id>/toggle', AdminUserToggleView.as_view(), name='admin_user_toggle'),
     path('admin/logs', AdminLogView.as_view(), name='admin_logs'),
+    path('admin/db/predictions', AdminPredictionView.as_view(), name='admin_predictions'),
+    path('admin/db/predictions/<int:pk>', AdminPredictionView.as_view(), name='admin_prediction_delete'),
     path('admin/db/nuke', AdminNukeView.as_view(), name='admin_nuke'),
 ]

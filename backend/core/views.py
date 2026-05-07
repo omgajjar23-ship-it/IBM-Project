@@ -318,6 +318,21 @@ class AdminUserView(APIView):
         )
         return Response({"id": user.id, "email": user.email, "name": user.name, "role": user.role, "is_active": user.is_active})
 
+class AdminUserDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        if request.user.role != 'admin':
+            raise PermissionDenied("Admin access required")
+        try:
+            user = User.objects.get(id=pk)
+            if user.role == 'admin':
+                return Response({"detail": "Cannot delete admin users"}, status=400)
+            user.delete()
+            return Response({"status": "success"})
+        except User.DoesNotExist:
+            return Response({"detail": "User not found"}, status=404)
+
 class AdminUserToggleView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -342,6 +357,25 @@ class AdminLogView(APIView):
         limit = int(request.query_params.get('limit', 100))
         logs = Log.objects.all().order_by('-timestamp')[skip:skip+limit]
         return Response(LogSerializer(logs, many=True).data)
+
+class AdminPredictionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        if request.user.role != 'admin':
+            raise PermissionDenied("Admin access required")
+        predictions = Prediction.objects.all().order_by('-timestamp')
+        return Response(PredictionSerializer(predictions, many=True).data)
+
+    def delete(self, request, pk):
+        if request.user.role != 'admin':
+            raise PermissionDenied("Admin access required")
+        try:
+            prediction = Prediction.objects.get(id=pk)
+            prediction.delete()
+            return Response({"status": "success"})
+        except Prediction.DoesNotExist:
+            return Response({"detail": "Prediction not found"}, status=404)
 
 class AdminNukeView(APIView):
     permission_classes = [IsAuthenticated]
